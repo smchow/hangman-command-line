@@ -33,12 +33,17 @@ function askForLetter(){
       nw.dispWord();
       //console.log(hasCompleted());
       var x = nw.hasCompleted();
-		console.log(x);
-      if ((i < MAX_NUM_OF_TRIES)&& !x){
+	if(!x){
+		 if ((i < MAX_NUM_OF_TRIES)){
       	askForLetter();
       }else {
-      	console.log('done here!')
+      	console.log("You have reached the maximum # of tries!");
       }
+
+	} else{
+		console.log("You guessed it correctly!");
+	}
+     
      
      /* if(play_again){
 			askForLetter();
