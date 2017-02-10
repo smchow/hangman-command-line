@@ -6,17 +6,28 @@ function Word(gw){
 	this.guess_word = gw;
 	this.all_letters = [];
 	this.correct_letters = [];
+	this.has_guessed_correctly = false;
+	this.display_str = "";
 }
  
 
 Word.prototype.dispWord = function(){
-	console.log(this.guess_word) 
-	console.log(this.correct_letters);
-	var display_str = "";
+	this.display_str = "";
+	//console.log(this.guess_word) 
+	//console.log(this.correct_letters);
+	
 	for (var i=0; i<= this.guess_word.length-1; i++){
-	display_str += " " + this.correct_letters[i].get_disp_letter();
+		this.display_str += " " + this.correct_letters[i].get_disp_letter();
 	}
-	console.log(display_str)
+	console.log(this.display_str)
+	
+}
+
+Word.prototype.hasCompleted = function(){
+	var has_completed = true;
+	//n = str.indexOf("welcome")
+	if ((this.display_str).indexOf("-") >= 0) has_completed = false;
+	return has_completed;
 }
 
 Word.prototype.createLetterArray = function(){

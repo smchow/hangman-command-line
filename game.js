@@ -6,11 +6,16 @@ var Word = require('./Word');
 var play_again = true;
 var start_again = false;
 var nw = new Word("newton");
+var MAX_NUM_OF_TRIES = 6;
+
+var i = 0; 
 nw.createLetterArray();
-//askForLetter();
+//
 	
-nw.check_letter('e');
+
 nw.dispWord();
+
+askForLetter();
 
 function askForLetter(){
 	inquirer.prompt([
@@ -22,8 +27,19 @@ function askForLetter(){
     message: "What's the capacity of the class?"},*/
 
 ]).then(function(data){
-	  var students = [];
-      conole.log(data.Letter);
+	  i++;
+    
+      nw.check_letter(data.letter);
+      nw.dispWord();
+      //console.log(hasCompleted());
+      var x = nw.hasCompleted();
+		console.log(x);
+      if ((i < MAX_NUM_OF_TRIES)&& !x){
+      	askForLetter();
+      }else {
+      	console.log('done here!')
+      }
+     
      /* if(play_again){
 			askForLetter();
 			nw.dispWord();
