@@ -2,23 +2,37 @@ var inquirer = require('inquirer');
 var Letter = require('./Letter');
 var Word = require('./Word');
 
-var newClass;
+//var newClass;
+var play_again = true;
+var start_again = false;
+var nw = new Word("newton");
+nw.createLetterArray();
+//askForLetter();
+	
+nw.check_letter('e');
+nw.dispWord();
 
-
-inquirer.prompt([
+function askForLetter(){
+	inquirer.prompt([
   {type: "input",
     name: "letter",
     message: "What's your letter?"},
-  {type: "input",
+  /*{type: "input",
     name: "capacity",
-    message: "What's the capacity of the class?"},
+    message: "What's the capacity of the class?"},*/
 
 ]).then(function(data){
 	  var students = [];
-      
-	var Letter = new Letter(data.letter);
+      conole.log(data.Letter);
+     /* if(play_again){
+			askForLetter();
+			nw.dispWord();
+		}*/
+
+	//var Letter = new Letter(data.letter);
       //askToAddStudent();
 });
+}
 
 /*function newStudent(){
 	inquirer.prompt([
