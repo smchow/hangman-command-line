@@ -14,11 +14,13 @@ playHM();
 
 
 function playHM(){
-	nw =new Word("newton");
+	console.log("Here is a new word for you:\n")
+	nw = new Word("newton");
 	i=0;
 	nw.createLetterArray();
 	nw.dispWord();
 	askForLetter(MAX_NUM_OF_TRIES);
+
 }
 
 function askForLetter(num_tries){
@@ -42,13 +44,16 @@ function askForLetter(num_tries){
       	askForLetter(MAX_NUM_OF_TRIES-i);
       }else {
       	console.log("You have reached the maximum # of tries!");
+      	 continuePlayCheck();
       }
 	} else{
 		console.log("You guessed it correctly!");
+		 continuePlayCheck();
 	}
 
+
 	
-     
+    
      
      /* if(play_again){
 			askForLetter();
@@ -58,6 +63,28 @@ function askForLetter(num_tries){
 	//var Letter = new Letter(data.letter);
       //askToAddStudent();
 });
+}
+
+function continuePlayCheck(){
+	inquirer.prompt([
+  {type: "input",
+    name: "continue",
+    message: " Do you want to continue? Y/N "},
+  /*{type: "input",
+    name: "capacity",
+    message: "What's the capacity of the class?"},*/
+
+]).then(function(data){
+	if(data.continue  == "Y") 
+		playHM();
+	else 
+		endGame();
+});
+}
+
+function endGame(){
+
+	console.log("See you next time");
 }
 
 /*function newStudent(){
