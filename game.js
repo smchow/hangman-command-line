@@ -5,23 +5,27 @@ var Word = require('./Word');
 //var newClass;
 var play_again = true;
 var start_again = false;
-var nw = new Word("newton");
 var MAX_NUM_OF_TRIES = 6;
+var i = 0;
+var nw;
 
-var i = 0; 
-nw.createLetterArray();
-//
-	
 
-nw.dispWord();
+playHM();
 
-askForLetter();
 
-function askForLetter(){
+function playHM(){
+	nw =new Word("newton");
+	i=0;
+	nw.createLetterArray();
+	nw.dispWord();
+	askForLetter(MAX_NUM_OF_TRIES);
+}
+
+function askForLetter(num_tries){
 	inquirer.prompt([
   {type: "input",
     name: "letter",
-    message: "What's your letter?"},
+    message: "You have " + num_tries + " tries left. Enter a letter: "},
   /*{type: "input",
     name: "capacity",
     message: "What's the capacity of the class?"},*/
@@ -35,14 +39,15 @@ function askForLetter(){
       var x = nw.hasCompleted();
 	if(!x){
 		 if ((i < MAX_NUM_OF_TRIES)){
-      	askForLetter();
+      	askForLetter(MAX_NUM_OF_TRIES-i);
       }else {
       	console.log("You have reached the maximum # of tries!");
       }
-
 	} else{
 		console.log("You guessed it correctly!");
 	}
+
+	
      
      
      /* if(play_again){

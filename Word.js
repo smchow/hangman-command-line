@@ -50,9 +50,8 @@ Word.prototype.add_letter = function(alpha){
 Word.prototype.check_letter = function(alpha){
 	for (var i=0; i<= this.guess_word.length-1; i++){
 		
-		console.log(this.correct_letters[i].get_letter());
+		//console.log(this.correct_letters[i].get_letter());
 		if (alpha == this.correct_letters[i].get_letter()){
-			console.log(alpha);
 			this.correct_letters[i].set_guessed_letter();
 		}
 	}

@@ -8,7 +8,6 @@ function Letter(alpha){
 
 Letter.prototype.set_guessed_letter = function(){
 	 this.display = this.alpha;
-	 console.log(this.display + "**")
 }
 
 Letter.prototype.get_disp_letter = function(){
