@@ -3,10 +3,12 @@ var Letter = require('./Letter');
 var Word = require('./Word');
 
 //var newClass;
-var play_again = true;
+var num_wins = 0
+var num_loss = 0 ;
 var start_again = false;
 var MAX_NUM_OF_TRIES = 6;
-var i = 0;
+//var num_tries = 0;
+//var counter = 0;
 var nw;
 var wordlist = ['Cloudburst', 'Condensation' , 'Drought' , 'Evaporation' , 'Scattering' , 'Thermometer' , 'Rain' , 'Snow' , 'Weather' , 'Climate']
 
@@ -16,10 +18,10 @@ playHM();
 function playHM(){
 	console.log("Here is a new word for you:\n")
 	getRandomWord()
-	i=0;
+	//num_tries = 0;
 	nw.createLetterArray();
 	nw.dispWord();
-	askForLetter(MAX_NUM_OF_TRIES);
+	askForLetter(MAX_NUM_OF_TRIES );
 
 }
 
@@ -39,35 +41,32 @@ function askForLetter(num_tries){
     message: "What's the capacity of the class?"},*/
 
 ]).then(function(data){
-	  i++;
-    
+	  console.log(num_tries);
+      //num_tries++;
+      num_tries--;
+
       nw.check_letter(data.letter.toLowerCase());
       nw.dispWord();
       //console.log(hasCompleted());
       var x = nw.hasCompleted();
 	if(!x){
-		 if ((i < MAX_NUM_OF_TRIES)){
-      	askForLetter(MAX_NUM_OF_TRIES-i);
+		 if ((num_tries > 0 )){
+      	askForLetter(num_tries);
       }else {
-      	console.log("You have reached the maximum # of tries!");
+      	 console.log("You have reached the maximum # of tries!");
+      	 num_loss++;
       	 continuePlayCheck();
       }
 	} else{
 		console.log("You guessed it correctly!");
+		num_wins++;
 		 continuePlayCheck();
 	}
 
 
 	
     
-     
-     /* if(play_again){
-			askForLetter();
-			nw.dispWord();
-		}*/
-
-	//var Letter = new Letter(data.letter);
-      //askToAddStudent();
+    
 });
 }
 
@@ -76,9 +75,8 @@ function continuePlayCheck(){
   {type: "input",
     name: "continue",
     message: " Do you want to continue? Y/N "},
-  /*{type: "input",
-    name: "capacity",
-    message: "What's the capacity of the class?"},*/
+ 
+
 
 ]).then(function(data){
 	if(data.continue.toLowerCase()  == "y") 
@@ -89,8 +87,9 @@ function continuePlayCheck(){
 }
 
 function endGame(){
-
-	console.log("See you next time");
+	console.log("You won " + num_wins + " times!\n")
+	console.log("You lost " + num_loss + " times!\n")
+	console.log("See you next time\n");
 }
 
 /*function newStudent(){
