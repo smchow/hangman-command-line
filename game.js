@@ -8,19 +8,25 @@ var start_again = false;
 var MAX_NUM_OF_TRIES = 6;
 var i = 0;
 var nw;
-
+var wordlist = ['Cloudburst', 'Condensation' , 'Drought' , 'Evaporation' , 'Scattering' , 'Thermometer' , 'Rain' , 'Snow' , 'Weather' , 'Climate']
 
 playHM();
 
 
 function playHM(){
 	console.log("Here is a new word for you:\n")
-	nw = new Word("newton");
+	getRandomWord()
 	i=0;
 	nw.createLetterArray();
 	nw.dispWord();
 	askForLetter(MAX_NUM_OF_TRIES);
 
+}
+
+function getRandomWord(){
+	var randomWord = wordlist[(Math.floor(Math.random() * wordlist.length))];
+	console.log(randomWord);
+   nw = new Word((randomWord).toLowerCase());
 }
 
 function askForLetter(num_tries){
@@ -35,7 +41,7 @@ function askForLetter(num_tries){
 ]).then(function(data){
 	  i++;
     
-      nw.check_letter(data.letter);
+      nw.check_letter(data.letter.toLowerCase());
       nw.dispWord();
       //console.log(hasCompleted());
       var x = nw.hasCompleted();
@@ -75,7 +81,7 @@ function continuePlayCheck(){
     message: "What's the capacity of the class?"},*/
 
 ]).then(function(data){
-	if(data.continue  == "Y") 
+	if(data.continue.toLowerCase()  == "y") 
 		playHM();
 	else 
 		endGame();
